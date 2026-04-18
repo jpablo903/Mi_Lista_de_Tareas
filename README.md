@@ -1,27 +1,117 @@
-# PrimerPrograma
+# Mi Lista de Tareas - Task Manager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
+Una aplicación web de gestión de tareas construida con Angular. Permite crear, eliminar y marcar tareas como completadas. Los datos se almacenan localmente usando localStorage.
 
-## Development server
+## Características
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- **Gestión de Tareas**: Crear, eliminar y completar tareas
+- **Almacenamiento Local**: Usa localStorage para persistencia de datos
+- **Enrutamiento**: Navegación entre sección de tareas y página "Acerca de"
+- **Interfaz Moderna**: Utiliza FontAwesome para iconos
+- **Formularios Reactivos**: Implementa validación de formularios con Angular Forms
 
-## Code scaffolding
+## Tecnologías
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular 13**: Framework principal
+- **TypeScript**: Lenguaje de programación
+- **RxJS**: Manejo de programación reactiva
+- **FontAwesome**: Iconos
+- **localStorage API**: Almacenamiento de datos en el cliente
 
-## Build
+## Estructura del Proyecto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+src/
+├── app/
+│   ├── components/         # Componentes reutilizables
+│   │   ├── header/        # Encabezado de la aplicación
+│   │   ├── footer/        # Pie de página
+│   │   ├── tasks/         # Lista de tareas
+│   │   ├── tasks-item/    # Elemento individual de tarea
+│   │   ├── add-task/      # Formulario para agregar tarea
+│   │   ├── button/        # Botón reutilizable
+│   │   ├── about/         # Página de información
+│   │   ├── Task.ts        # Interfaz de Tarea
+│   │   └── mock-tasks.ts  # Datos de ejemplo
+│   ├── service/           # Servicios
+│   │   ├── task.service.ts      # Servicio de gestión de tareas
+│   │   └── ui-state.service.ts  # Servicio de estado UI
+│   ├── app.component.*    # Componente raíz
+│   └── app.module.ts      # Módulo principal
+├── styles.css             # Estilos globales
+└── index.html             # Archivo HTML principal
+```
 
-## Running unit tests
+## Instalación
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clonar el repositorio:
+```bash
+git clone <repository-url>
+cd Mi_Lista_de_Tareas
+```
 
-## Running end-to-end tests
+2. Instalar dependencias:
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Desarrollo
 
-## Further help
+### Servidor de desarrollo
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Ejecutar el servidor de desarrollo:
+```bash
+npm start
+```
+
+Acceder a la aplicación en `http://localhost:4200/`
+
+### Servidor JSON (opcional)
+
+Para usar un servidor JSON para desarrollo:
+```bash
+npm run server
+```
+
+El servidor estará disponible en `http://localhost:5000`
+
+## Compilación
+
+Compilar la aplicación para producción:
+```bash
+npm run build
+```
+
+Los artefactos se almacenarán en el directorio `dist/`.
+
+## Testing
+
+Ejecutar pruebas unitarias:
+```bash
+npm test
+```
+
+Las pruebas se ejecutan a través de [Karma](https://karma-runner.github.io).
+
+## Docker
+
+La aplicación incluye un `Dockerfile` para ejecutarse en un contenedor Docker:
+
+```bash
+docker build -t task-manager .
+docker run -p 4200:4200 task-manager
+```
+
+También está incluido `docker-compose.yml` para orquestación de contenedores.
+
+## Uso
+
+1. **Ver Tareas**: La página principal muestra todas las tareas almacenadas
+2. **Agregar Tarea**: Usa el formulario para agregar una nueva tarea
+3. **Completar Tarea**: Haz clic en el recordatorio (bell icon) para marcar como completada
+4. **Eliminar Tarea**: Haz clic en el botón de eliminar para remover una tarea
+5. **Acerca de**: Navega a `/about` para ver información de la aplicación
+
+## Licencia
+
+Libre para usar y modificar.

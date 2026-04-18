@@ -1,20 +1,30 @@
-<form class="add-form" (ngSubmit)="onSubmit()" *ngIf="showAddTask">
+<form class="add-form" [formGroup]="taskForm" (ngSubmit)="onSubmit()" *ngIf="showAddTask">
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
     <div class="form-control">
-        <label for="text">Task</label>
-        <input type="text" name="text" id="text" placeholder="Add Task Text" [(ngModel)]="text" />
+        <label for="text">Tarea</label>
+        <input type="text" name="text" id="text" placeholder="Agregar texto de tarea" formControlName="text" />
+        <div *ngIf="taskForm.get('text')?.invalid && taskForm.get('text')?.touched" class="error">
+            <span *ngIf="taskForm.get('text')?.errors?.['required']">El texto es requerido.</span>
+            <span *ngIf="taskForm.get('text')?.errors?.['minlength']">El texto debe tener al menos 3 caracteres.</span>
+            <span *ngIf="taskForm.get('text')?.errors?.['pattern']">El texto no puede ser solo espacios.</span>
+        </div>
     </div>
 
     <div class="form-control">
-        <label for="day">Day & Time</label>
-        <input type="text" name="day" id="day" placeholder="Add day & time" [(ngModel)]="day" />
+        <label for="day">Día y Hora</label>
+        <input type="datetime-local" name="day" id="day" formControlName="day" />
+        <div *ngIf="taskForm.get('day')?.invalid && taskForm.get('day')?.touched" class="error">
+            <span *ngIf="taskForm.get('day')?.errors?.['required']">El día es requerido.</span>
+            <span *ngIf="taskForm.get('day')?.errors?.['pattern']">El día no puede ser solo espacios.</span>
+            <span *ngIf="taskForm.get('day')?.errors?.['pastDate']">La fecha y hora deben ser en el futuro.</span>
+        </div>
     </div>
 
     <div class="form-control form-control-check">
-        <label for="reminder">Reminder</label>
-        <input type="checkbox" name="reminder" id="reminder" [(ngModel)]="reminder" />
+        <label for="reminder">Recordatorio</label>
+        <input type="checkbox" name="reminder" id="reminder" formControlName="reminder" />
     </div>
 
-
-    <input type="submit" value="Save Task" class="btn btn-block">
+    <input type="submit" value="Guardar Tarea" class="btn btn-block" [disabled]="taskForm.invalid">
 
 </form>

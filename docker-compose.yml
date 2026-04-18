@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  angular:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mi-primer-programa
+    ports:
+      - "4200:4200"
+    volumes:
+      # Volumen de código para hot reload
+      - .:/app
+      # Volumen nombrado para node_modules (evita sincronización de host)
+      - /app/node_modules
+      # Volumen nombrado para .angular (cache)
+      - /app/.angular
+    environment:
+      - WATCHMAN_DISABLE=true
+    command: pnpm start
+    stdin_open: true
+    tty: true
+
+volumes:
+  node_modules:

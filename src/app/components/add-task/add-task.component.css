@@ -1,3 +1,9 @@
 .add-form {
     margin-bottom: 30px;
 }
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}

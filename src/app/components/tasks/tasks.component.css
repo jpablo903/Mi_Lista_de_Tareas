@@ -1,0 +1,22 @@
+.tasks-container {
+  min-height: 200px;
+}
+
+@media (max-width: 768px) {
+  .tasks-container {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tasks-container {
+    min-height: 120px;
+  }
+}
+
+.no-tasks {
+  text-align: center;
+  margin: 20px 0;
+  color: #666;
+  font-size: 1.2em;
+}

@@ -1,5 +1,4 @@
 import {Task} from "./Task"
-//Emulando una base de datos "json".
 
 export const TASKS: Task[] = [
     {

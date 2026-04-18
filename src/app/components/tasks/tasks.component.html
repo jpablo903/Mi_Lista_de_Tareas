@@ -1,12 +1,15 @@
-<app-add-task
-    (onAddTask)="addTask($event)"
-></app-add-task>
-<app-tasks-item 
-    *ngFor="let task of tasks" 
-    [task]="task" 
-    (onDeleteTask) ="deleteTask(task)"
-    (onToggleReminder) ="toggleReminder(task)"
-
-
->
-</app-tasks-item>
+<div class="tasks-container">
+  <app-add-task
+      (onAddTask)="addTask($event)"
+  ></app-add-task>
+  <div *ngIf="tasks.length === 0" class="no-tasks">
+      <p>Ingresa tu primera tarea</p>
+  </div>
+  <app-tasks-item
+      *ngFor="let task of tasks"
+      [task]="task"
+      (onDeleteTask) ="deleteTask(task)"
+      (onToggleReminder) ="toggleReminder(task)"
+  >
+  </app-tasks-item>
+</div>

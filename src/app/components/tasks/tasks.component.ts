@@ -1,7 +1,7 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TaskService } from '../../service/task.service'
 import { Task } from '../Task';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,17 +9,22 @@ import { Task } from '../Task';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
+  subscription?: Subscription;
 
   constructor(
     private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks) => {
+    this.subscription = this.taskService.getTasks().subscribe((tasks) => {
       this.tasks = tasks
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   deleteTask(task: Task) {

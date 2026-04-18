@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UlService } from 'src/app/service/ul.service'
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UIStateService } from 'src/app/service/ui-state.service'
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router'
 
@@ -8,24 +8,28 @@ import { Router } from '@angular/router'
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   title: string = 'Mi lista de Tareas';
-  showAddTask: boolean = true;
+  showAddTask: boolean = false;
   subscription?: Subscription;
 
   constructor(
-    private ulService: UlService,
+    private uiService: UIStateService,
     private router: Router
   ) {
-    this.subscription = this.ulService.onToggle()
+    this.subscription = this.uiService.onToggle()
       .subscribe(value => this.showAddTask = value)
   }
 
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
   toggleAddTask() {
-    this.ulService.toggleAddTask();
+    this.uiService.toggleAddTask();
   }
   hasRoute(route: string){
     return this.router.url === route

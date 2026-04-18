@@ -1,20 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
   @Input() text: string = "";
   @Input() color: string = "";
   @Output() btnClick = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-  //Funciones debajo.
   onClick(){
     this.btnClick.emit();
   }

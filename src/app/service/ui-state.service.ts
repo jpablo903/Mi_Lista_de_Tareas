@@ -4,9 +4,9 @@ import {Observable, Subject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UlService {
-  private showAddTask: boolean = true;
-  private subject = new Subject<any>();
+export class UIStateService {
+  private showAddTask: boolean = false;
+  private subject = new Subject<boolean>();
 
   constructor() { }
 
@@ -15,7 +15,7 @@ toggleAddTask(): void{
   this.subject.next(this.showAddTask);
 }
 
-onToggle():Observable<any>{
+onToggle():Observable<boolean>{
   return this.subject.asObservable(); 
 }
 }
