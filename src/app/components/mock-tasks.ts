@@ -3,7 +3,7 @@ import {Task} from "./Task"
 export const TASKS: Task[] = [
     {
         id: 1,
-        text: "Terminar el primer modulo de Angular",
+        text: "Terminar el primer capitulo del Señor de los Anillos",
         day: "Agosto 5 a las 17:00",
         reminder: true
     },
@@ -15,7 +15,7 @@ export const TASKS: Task[] = [
     },
     {
         id: 3,
-        text :"Investigar sobre Boostrap",
+        text :"Investigar sobre nuevas tecnologías",
         day: "Agosto 5 a las 13:00",
         reminder: false
     },
