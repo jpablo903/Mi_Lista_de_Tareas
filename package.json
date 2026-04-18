@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "server": "json-server --watch db.json --port 5000",
-    "postbuild": "cp src/_redirects dist/primer-programa/_redirects"
+    "postbuild": "cp src/_redirects dist/PrimerPrograma/_redirects"
   },
   "private": true,
   "dependencies": {
